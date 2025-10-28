@@ -2,6 +2,10 @@ import { useState } from "react";
 import { Calendar, Clock, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import Image1 from "./assets/2.jpg";
+import Image2 from "./assets/4.jpg";
+import Image3 from "./assets/5.jpg";
+import Image4 from "./assets/b.jpg";
 
 // Home Page Component
 const HomePage = ({ onNavigate }: any) => {
@@ -11,7 +15,7 @@ const HomePage = ({ onNavigate }: any) => {
         {/* Left Image Section */}
         <div className="w-2/3 h-screen relative ">
           <img
-            src="/Images/2.jpg"
+            src={Image1}
             alt="futsal"
             className="w-full h-full object-cover"
           />
@@ -46,6 +50,17 @@ const HomePage = ({ onNavigate }: any) => {
 };
 
 const ContactPage = ({ onNavigate }: any) => {
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (
+      e.target.elements[0].value.trim() !== "" && // Name validation
+      /^[0-9]{10}$/.test(e.target.elements[1].value.trim()) // Mobile validation
+    ) {
+      onNavigate("booking");
+    } else {
+      alert("Please enter valid details!");
+    }
+  };
   return (
     <>
       <div className="min-h-screen bg-[#0c1a25] flex">
@@ -66,7 +81,7 @@ const ContactPage = ({ onNavigate }: any) => {
               and Book your slots soon!
             </p>
             <div className="mb-5 w-full">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <Card className="bg-[#0c1a25] border-none">
                   <CardContent>
                     <input
@@ -81,20 +96,19 @@ const ContactPage = ({ onNavigate }: any) => {
                       type="tel"
                       placeholder="Enter Your Mobile Number"
                       className="w-full bg-white mt-4 p-4 rounded-md"
-                      required
                       pattern="[0-9]{10}"
+                      required
                     />
                   </CardContent>
                 </Card>
+                <button
+                  type="submit"
+                  className="bg-[#00f0ff] text-black px-10 py-4 text-[18px] font-semibold hover:bg-white hover:text-black hover:border-black mb-5"
+                >
+                  Book Now!
+                </button>
               </form>
             </div>
-            <button
-              type="submit"
-              onClick={() => onNavigate("booking")}
-              className="bg-[#00f0ff] text-black px-10 py-4 text-[18px] font-semibold hover:bg-white hover:text-black hover:border-black mb-5"
-            >
-              Book Now!
-            </button>
             <br />
             <button
               onClick={() => onNavigate("home")}
@@ -107,7 +121,7 @@ const ContactPage = ({ onNavigate }: any) => {
 
         <div className="w-2/3 h-screen relative">
           <img
-            src="/Images/4.jpg"
+            src={Image2}
             alt="futsal"
             className="w-full h-full object-cover"
           />
@@ -165,7 +179,7 @@ const BookingPage = ({ onNavigate }: any) => {
         {/* Image Section */}
         <div className="w-2/3 relative h-screen w-[1400px]">
           <img
-            src="/Images/5.jpg"
+            src={Image3}
             alt="futsal"
             className="w-full h-full object-cover"
           />
@@ -359,9 +373,10 @@ const PaymentPage = ({ onNavigate }: any) => {
 
         {/* Right Image */}
         <div className="w-2/3 h-screen realtive">
-          <img src="/Images/b.jpg" 
-          alt="futsal" 
-          className="w-full h-full object-cover"
+          <img
+            src={Image4}
+            alt="futsal"
+            className="w-full h-full object-cover"
           />
         </div>
       </div>
