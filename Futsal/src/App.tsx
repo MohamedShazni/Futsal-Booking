@@ -1,11 +1,14 @@
 import './App.css'
 import FutsalBooking from './ftsl'
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
 
   return (
     <>
-      <FutsalBooking/>
+      <BrowserRouter>
+        <FutsalBooking/>
+      </BrowserRouter>
     </>
   )
 }
